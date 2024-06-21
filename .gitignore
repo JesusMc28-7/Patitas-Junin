@@ -1,3 +1,5 @@
 **/env
 **/Proyecto/db.sqlite3
 **/Proyecto/__pycache__
+**/APP/__pycache__
+**/APP/migrations/__pycache__
