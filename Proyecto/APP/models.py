@@ -60,9 +60,9 @@ class Adoptantedb(models.Model):
     
 
     class Meta:
-        db_table="Voluntarios"
-        verbose_name ="Voluntario"
-        verbose_name_plural= "Voluntarios"
+        db_table="Adoptantes"
+        verbose_name ="Adoptante"
+        verbose_name_plural= "Adoptantes"
 
     def __str__(self) -> str:
         return self.ced
@@ -70,6 +70,7 @@ class Adoptantedb(models.Model):
 
 ##ESTOS SON LOS PERROS
 class Perrosdb(models.Model):
+    id= models.CharField(primary_key=True, max_length=50,verbose_name="ID")
     nom= models.CharField(max_length=40, verbose_name= "Nombre")
     edad= models.IntegerField(verbose_name= "Edad")
     desc= models.TextField(max_length=500, verbose_name= "Descripcion")
@@ -80,9 +81,54 @@ class Perrosdb(models.Model):
     photo = models.ImageField(default="Perro_default.jpg",upload_to="Perros/")
 
     class Meta:
-        db_table="Perros"
+        db_table="Perro"
         verbose_name ="Perro"
         verbose_name_plural= "Perros"
 
     def __str__(self) -> str:
         return self.nom
+    
+ ## VACUNAS PARA PERRO   
+class vacunas_perrodb(models.Model):
+    fk_id= models.ForeignKey(Perrosdb,verbose_name="ID",on_delete=models.CASCADE)
+    vac1= models.CharField (max_length=50, verbose_name="Parvovirus",default= None)
+    vac2= models.CharField (max_length=50, verbose_name="Vacuna 2",default= None)
+    vac3= models.CharField (max_length=50, verbose_name="Vacuna 3",default= None)
+    
+    class Meta:
+        db_table="Vacunas_Perros"
+        verbose_name ="Vacunas_perro"
+        verbose_name_plural= "Vacunas_perros"
+
+    
+    
+##ESTOS SON LOS GATOS
+class Gatodb(models.Model):
+    id= models.CharField(primary_key=True, max_length=50,verbose_name="ID")
+    nom= models.CharField(max_length=40, verbose_name= "Nombre")
+    edad= models.IntegerField(verbose_name= "Edad")
+    desc= models.TextField(max_length=500, verbose_name= "Descripcion")
+    raza= models.CharField(max_length=30, verbose_name= "Raza")
+    fk_est=  models.ForeignKey(Esterilizaciondb, on_delete=models.CASCADE,verbose_name= "Estelirizacion")
+    fk_gen=  models.ForeignKey(Generodb, on_delete= models.CASCADE, verbose_name= "Genero")
+    photo = models.ImageField(default="Gato_default.jpg",upload_to="Gatos/")
+
+    class Meta:
+        db_table="Gatos"
+        verbose_name ="Gato"
+        verbose_name_plural= "Gatos"
+
+    def __str__(self) -> str:
+        return self.nom
+
+   ##VACUNAS PARA GATO 
+class vacunas_gatodb(models.Model):
+    fk_id= models.ForeignKey(Gatodb,verbose_name="ID",on_delete=models.CASCADE)
+    vac1= models.CharField (max_length=50, verbose_name="Giardiasis",default= None)
+    vac2= models.CharField (max_length=50, verbose_name="Vacuna 2",default= None)
+    vac3= models.CharField (max_length=50, verbose_name="Vacuna 3",default= None)
+
+    class Meta:
+        db_table="Vacunas Gatos"
+        verbose_name ="Vacunas Gato"
+        verbose_name_plural= "Vacunas_Gatos"
