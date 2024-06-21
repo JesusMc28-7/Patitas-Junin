@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -81,9 +81,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'railway',
         'USER': 'root',
-        'PASSWORD': 'WueQpoIUisouHKUFsEbIJbcAZbfAjhis',
-        'HOST': 'viaduct.proxy.rlwy.net',
-        'PORT': '13619'
+        'PASSWORD': 'GFErJkpGdlsYFKqoYotNVQXKYkvHFmKD',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '16292'
 
     }
 }
@@ -129,3 +129,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'APP.User'
+
+# Definicion de la carpeta de media para cargar imagenes
+MEDIA_URL= '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
