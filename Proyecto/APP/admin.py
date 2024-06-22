@@ -5,20 +5,6 @@ from .models import *
 ##Vista de usuarios
 admin.site.register(User)
 
-##Vistas de Perro
-class Perrosadmin(admin.ModelAdmin):
-    fields=["id","nom","edad","desc","raza","fk_est","fk_tam","fk_gen","photo"]
-    list_display= ["id","nom","edad","fk_est","fk_tam","fk_gen"]
-
-admin.site.register(Perrosdb,Perrosadmin)
-
-##Vista de las vacunas de perro
-class Vacunas_perroadmin(admin.ModelAdmin):
-    fields=["fk_id","vac1","vac2","vac3"]
-    list_display= ["fk_id","vac1","vac2","vac3"]
-    
-admin.site.register(vacunas_perrodb,Vacunas_perroadmin)
-
 ##Vista de adoptante
 class adoptanteadmin(admin.ModelAdmin):
     fields=["ced","name","ape","tlf","correo","photo",]
@@ -27,18 +13,56 @@ class adoptanteadmin(admin.ModelAdmin):
 
 admin.site.register(Adoptantedb,adoptanteadmin)
 
-##Vista de Gato 
-class Gatossadmin(admin.ModelAdmin):
-    fields=["id","nom","edad","desc","raza","fk_est","fk_gen","photo"]
-    list_display= ["id","nom","edad","fk_est","fk_gen"]
+##Vista de las especies
+class Tipodmin(admin.ModelAdmin):
+    fields=["especie"]
+    list_display= ["especie"]
+    
+admin.site.register(Tipodb,Tipodmin)
+
+
+##Vistas de Animales
+class Animalesadmin(admin.ModelAdmin):
+    fields=["id","nom","edad","desc","obs","raza","fk_est","fk_esp","fk_tam","fk_gen","photo"]
+    list_display= ["id","nom","edad","fk_esp","fk_est","fk_tam","fk_gen"]
+
+admin.site.register(Animalesdb,Animalesadmin)
+
+##Vista de Resguardo 
+class Resguardoadmin(admin.ModelAdmin):
+    fields=["Cuidador","mascota"]
+    list_display= ["Cuidador","mascota"]
     
 
-admin.site.register(Gatodb,Gatossadmin)
+admin.site.register(Resguardodb,Resguardoadmin)
 
-##Vista de las vacunas de gatos
-class Vacunas_Gatoadmin(admin.ModelAdmin):
-    fields=["fk_id","vac1","vac2","vac3"]
-    list_display= ["fk_id","vac1","vac2","vac3"]
+##Vista de Adopciones 
+class Adopcionesadmin(admin.ModelAdmin):
+    fields=["id","Adoptante","Animal","Fecha"]
+    list_display= ["id","Adoptante","Animal","Fecha"]
     
-admin.site.register(vacunas_gatodb,Vacunas_Gatoadmin)
+admin.site.register(Adopcionesdb,Adopcionesadmin)
+
+##Vista de Adopciones 
+class Fallecimientosadmin(admin.ModelAdmin):
+    fields=["id","causa_muerte","Animal","Fecha"]
+    list_display= ["id","Animal","Fecha"]
+    
+admin.site.register(Fallecimientodb,Fallecimientosadmin)
+
+
+##Vista de Adopciones 
+class Historial_A_admin(admin.ModelAdmin):
+    fields=["id","fk_id"]
+    list_display= ["id","fk_id"]
+    
+admin.site.register(Historial_Adb,Historial_A_admin)
+
+class Historial_F_admin(admin.ModelAdmin):
+    fields=["id","fk_id"]
+    list_display= ["id","fk_id"]
+    
+admin.site.register(Historial_Fdb,Historial_F_admin)
+
+
 
