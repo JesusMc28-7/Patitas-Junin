@@ -63,6 +63,3 @@ class Historial_F_admin(admin.ModelAdmin):
     list_display= ["id","fk_id"]
     
 admin.site.register(Historial_Fdb,Historial_F_admin)
-
-
-
