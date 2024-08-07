@@ -20,6 +20,26 @@ class Tipodmin(admin.ModelAdmin):
     
 admin.site.register(Tipodb,Tipodmin)
 
+class Generosadmin(admin.ModelAdmin):
+    fields=["gen"]
+    list_display= ["gen"]
+
+admin.site.register(Generodb,Generosadmin)
+
+class Tamañosadmin(admin.ModelAdmin):
+    fields=["tamaño"]
+    list_display= ["tamaño"]
+
+admin.site.register(Tamañodb,Tamañosadmin)
+
+class Estelirizacionadmin(admin.ModelAdmin):
+    fields=["est"]
+    list_display= ["est"]
+
+admin.site.register(Esterilizaciondb,Estelirizacionadmin)
+
+
+
 
 ##Vistas de Animales
 class Animalesadmin(admin.ModelAdmin):
@@ -63,6 +83,3 @@ class Historial_F_admin(admin.ModelAdmin):
     list_display= ["id","fk_id"]
     
 admin.site.register(Historial_Fdb,Historial_F_admin)
-
-
-

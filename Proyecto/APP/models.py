@@ -77,13 +77,12 @@ class Adoptantedb(models.Model):
 
     def __str__(self) -> str:
         return self.ced
-
-
+    
 ##ESTOS SON LOS ANIMALES/ HAY UN bug QUE EVITA QUE RETORNE UN STR, POR ESO EN SUPER ADMIN EL NOMBRE LO RETORNA COMO Animalesdb object
 ##Se buguea en la tabla de resguardos
 class Animalesdb(models.Model):
     id= models.CharField(primary_key=True, max_length=50,verbose_name="ID")
-    nom= models.CharField(max_length=40, verbose_name= "Nombre")
+    nom= models.CharField(max_length=50, verbose_name= "Nombre")
     edad= models.IntegerField(verbose_name= "Edad")
     desc= models.TextField(max_length=500, verbose_name= "Descripcion")
     obs= models.TextField(max_length=500, verbose_name= "Observaciones")
@@ -100,20 +99,23 @@ class Animalesdb(models.Model):
         verbose_name_plural= "Animales"
 
     def __str__(self) -> str:
-            return self.nom
+    
+        return self.nom
+
+    
     
 ## TABLA DE ASOCIACION DE RESCATISTAS USERS Y ANIMALES EN LA FUNDACION
 class Resguardodb(models.Model):
     Cuidador= models.ForeignKey(User, on_delete=models.CASCADE)
-    mascota= models.ForeignKey(Animalesdb,on_delete=models.CASCADE)
+    mascota= models.ForeignKey(Animalesdb,on_delete=models.CASCADE,verbose_name="Mascota")
     
     class Meta:
         db_table="Resguardo"
         verbose_name ="Resguardo"
         ##Si sacan la funcion de self de la clase meta Se cargan todo,asi pueden ver el error
         ## Devuelvanla dentro de la clase meta para que todo vuelva a funcionar
-        def __str__(self) -> str:
-            return self.mascota
+    def __str__(self) -> str:
+            return str (self.mascota)
         
 ##TABLA DE ADOPCIONES
 class Adopcionesdb(models.Model):
