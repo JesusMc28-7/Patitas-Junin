@@ -7,7 +7,7 @@ admin.site.register(User)
 
 ##Vista de adoptante
 class adoptanteadmin(admin.ModelAdmin):
-    fields=["ced","name","ape","tlf","correo","photo",]
+    fields=["ced","name","ape","tlf","photo"]
     list_display= ["ced","name","ape"]
     
 
@@ -43,7 +43,7 @@ admin.site.register(Esterilizaciondb,Estelirizacionadmin)
 
 ##Vistas de Animales
 class Animalesadmin(admin.ModelAdmin):
-    fields=["id","nom","edad","desc","obs","raza","fk_est","fk_esp","fk_tam","fk_gen","photo"]
+    fields=["id","nom","edad","obs","raza","fk_est","fk_esp","fk_tam","fk_gen","photo"]
     list_display= ["id","nom","edad","fk_esp","fk_est","fk_tam","fk_gen"]
 
 admin.site.register(Animalesdb,Animalesadmin)
@@ -63,23 +63,3 @@ class Adopcionesadmin(admin.ModelAdmin):
     
 admin.site.register(Adopcionesdb,Adopcionesadmin)
 
-##Vista de Adopciones 
-class Fallecimientosadmin(admin.ModelAdmin):
-    fields=["id","causa_muerte","Animal","Fecha"]
-    list_display= ["id","Animal","Fecha"]
-    
-admin.site.register(Fallecimientodb,Fallecimientosadmin)
-
-
-##Vista de Adopciones 
-class Historial_A_admin(admin.ModelAdmin):
-    fields=["id","fk_id"]
-    list_display= ["id","fk_id"]
-    
-admin.site.register(Historial_Adb,Historial_A_admin)
-
-class Historial_F_admin(admin.ModelAdmin):
-    fields=["id","fk_id"]
-    list_display= ["id","fk_id"]
-    
-admin.site.register(Historial_Fdb,Historial_F_admin)

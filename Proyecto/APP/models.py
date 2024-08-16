@@ -67,7 +67,6 @@ class Adoptantedb(models.Model):
     name= models.CharField(max_length=30, verbose_name= "Nombre")
     ape= models.CharField(max_length=30, verbose_name= "Apellido")
     tlf= models.CharField(max_length=100,verbose_name= "Telefono")
-    correo= models.TextField(max_length=100, verbose_name= "Correo")
     photo = models.ImageField(default="Adoptante_default.png",upload_to="Adoptante/")
     
     class Meta:
@@ -83,8 +82,7 @@ class Adoptantedb(models.Model):
 class Animalesdb(models.Model):
     id= models.CharField(primary_key=True, max_length=50,verbose_name="ID")
     nom= models.CharField(max_length=50, verbose_name= "Nombre")
-    edad= models.IntegerField(verbose_name= "Edad")
-    desc= models.TextField(max_length=500, verbose_name= "Descripcion")
+    edad= models.DateField(verbose_name= "Fecha de nacimiento aprox.")
     obs= models.TextField(max_length=500, verbose_name= "Observaciones")
     raza= models.CharField(max_length=30, verbose_name= "Raza")
     fk_est=  models.ForeignKey(Esterilizaciondb, on_delete=models.CASCADE,verbose_name= "Estelirizacion")
@@ -133,40 +131,3 @@ class Adopcionesdb(models.Model):
     def __str__(self) -> str:
             return self.id
     
-    ##TABLE DE ANIMALES FALLECIDOS
-class Fallecimientodb(models.Model):
-    id= models.CharField(primary_key=True, max_length=50,verbose_name="Id") 
-    causa_muerte= models.TextField(max_length=100,verbose_name="Causas")
-    Animal= models.ForeignKey(Resguardodb,on_delete=models.CASCADE)
-    Fecha= models.DateField(verbose_name="Fecha de muerte")
-
-    class Meta:
-        db_table="Fallecimientos"
-        verbose_name ="Animales_Fallecidos"
-        
-    def __str__(self) -> str:
-        return self.id
-    
-    ##TABLE DE historial de adopciones
-class Historial_Adb(models.Model):
-    id= models.CharField(primary_key=True, max_length=50,verbose_name="Id") 
-    fk_id= models.ForeignKey(Adopcionesdb,on_delete=models.CASCADE)
-
-    class Meta:
-        db_table="Historial_Adopciones"
-        verbose_name ="Historial de adopciones"
-        
-    def __str__(self) -> str:
-        return self.id
-    
-    ##TABLE DE historial de fallecimientos
-class Historial_Fdb(models.Model):
-    id= models.CharField(primary_key=True, max_length=50,verbose_name="Id") 
-    fk_id= models.ForeignKey(Fallecimientodb,on_delete=models.CASCADE)
-
-    class Meta:
-        db_table="Historial_Fallecimiento"
-        verbose_name ="Historial de Fallecimiento"
-        
-    def __str__(self) -> str:
-        return self.id
