@@ -43,7 +43,7 @@ class Tamañodb(models.Model):
 
     class Meta:
         db_table="Tamaño"
-        verbose_name ="Tamaños"
+        verbose_name ="Tamaño"
 
     def __str__(self) -> str:
         return self.tamaño
@@ -83,7 +83,7 @@ class Animalesdb(models.Model):
     id= models.CharField(primary_key=True, max_length=50,verbose_name="ID")
     nom= models.CharField(max_length=50, verbose_name= "Nombre")
     edad= models.DateField(verbose_name= "Fecha de nacimiento aprox.")
-    obs= models.TextField(max_length=500, verbose_name= "Observaciones")
+    status= models.BooleanField(verbose_name= "Status_adopcion",default=None)
     raza= models.CharField(max_length=30, verbose_name= "Raza")
     fk_est=  models.ForeignKey(Esterilizaciondb, on_delete=models.CASCADE,verbose_name= "Estelirizacion")
     fk_esp= models.ForeignKey(Tipodb, on_delete=models.CASCADE, verbose_name="Especie",default=None)

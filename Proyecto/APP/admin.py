@@ -43,8 +43,8 @@ admin.site.register(Esterilizaciondb,Estelirizacionadmin)
 
 ##Vistas de Animales
 class Animalesadmin(admin.ModelAdmin):
-    fields=["id","nom","edad","obs","raza","fk_est","fk_esp","fk_tam","fk_gen","photo"]
-    list_display= ["id","nom","edad","fk_esp","fk_est","fk_tam","fk_gen"]
+    fields=["id","nom","edad","status","raza","fk_est","fk_esp","fk_tam","fk_gen","photo"]
+    list_display= ["id","nom","edad","status","fk_esp","fk_est","fk_tam","fk_gen"]
 
 admin.site.register(Animalesdb,Animalesadmin)
 
